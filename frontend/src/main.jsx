@@ -42,7 +42,7 @@ const router = createBrowserRouter(
           <Profile />
         </AuthLayout>} />
 
-        <Route path='/reset-password' element={<AuthLayout authentication>
+        <Route path='/reset-password' element={<AuthLayout authentication={false}>
           {" "}
           <ResetPassword />
         </AuthLayout>} />

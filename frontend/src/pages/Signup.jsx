@@ -53,7 +53,7 @@ function Signup() {
         console.log(otpResponse.data);
         toast.success(otpResponse.data.message)
         setLoader(false)
-        navigate("/reset-password/new")
+        navigate("/")
       }
     } catch (error) {
       console.log(error.response.data.error)

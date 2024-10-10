@@ -62,8 +62,13 @@ const signupOTPVerify = asyncHandler(async function (req, res) {
 
     const loggedInUser = await User.findById(user._id).select("-password -refreshToken")
 
+    const options = {
+        httpOnly: true,
+        secure: true
+    }
+
     res.status(200)
-        .cookie("token", token.accessToken)
+        .cookie("token", token.accessToken, options)
         .json(new ApiResponse(200, loggedInUser, "Logged in successfully"))
 
 })
@@ -124,7 +129,7 @@ const resetPassword = asyncHandler(async function (req, res) {
 
 const resetPasswordOTPVerify = asyncHandler(async function (req, res) {
     const { otp } = req.body
-    const  email  = passwordResetUser    
+    const email = passwordResetUser    
 
     if (!otp) throw new ApiError(404, "OTP not found")
 

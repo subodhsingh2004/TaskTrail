@@ -4,14 +4,14 @@ const transporter = nodemailer.createTransport({
     host: "smtp.ethereal.email",
     port: 587,
     auth: {
-        user: 'lauryn57@ethereal.email',
-        pass: 'azasygBkKfDPuVyE8s'
+        user: `${process.env.EMAIL}`,
+        pass: `${process.env.EMAIL_PASS}`
     },
   });
 
 export const sendOTPEmail = async (email, otp) => {
     const mailOptions = {
-        from: '"OTP Service" <lauryn57@ethereal.email>', // sender address
+        from: `${process.env.EMAIL}`, // sender address
         to: email, // recipient address
         subject: 'Your OTP Code',
         text: `Your OTP code is ${otp}. It is valid for 5 minutes.`,
