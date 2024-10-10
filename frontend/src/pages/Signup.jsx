@@ -4,9 +4,12 @@ import { toast, Toaster } from "react-hot-toast"
 import axios from "axios";
 import OtpInput from '../components/OtpInput'
 import Loader from '../components/Loader';
+import { useDispatch } from 'react-redux';
+import { login } from '../slices/AuthSlice';
 
 function Signup() {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const [otpField, setOtpField] = useState(false)
   const [loader, setLoader] = useState(false)
@@ -30,6 +33,7 @@ function Signup() {
     } catch (error) {
       console.log(error.response.data.error)
       toast.error(error.response.data.error)
+      setLoader(false)
     }
 
   }
@@ -50,13 +54,12 @@ function Signup() {
       const otpResponse = await axios.post("/api/v1/users/signup/verify-otp", { email, otp })
 
       if (otpResponse) {
-        console.log(otpResponse.data);
         toast.success(otpResponse.data.message)
         setLoader(false)
         navigate("/")
+        dispatch(login(otpResponse.data))
       }
     } catch (error) {
-      console.log(error.response.data.error)
       toast.error(error.response.data.error)
       setLoader(false)
     }
