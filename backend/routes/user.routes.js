@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { signupOTPVerify, registerUser, resetPassword, resetPasswordOTPVerify, loginUser, logoutUser, resetPasswordNew } from "../controllers/user.controller.js";
-import OTPVerification from "../middlewares/OTPverification.js";
+import OTPVerification from "../middlewares/OTPVerification.js";
 import { verifyJWT } from "../middlewares/verifyJWT.js";
 
 const router = Router()

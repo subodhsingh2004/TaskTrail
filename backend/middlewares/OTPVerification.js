@@ -1,4 +1,3 @@
-import { User } from "../models/user.model.js"
 import { verifyOTP } from "../services/OTPService.js"
 import { ApiError } from "../utils/ApiError.js"
 
