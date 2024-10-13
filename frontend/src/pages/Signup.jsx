@@ -56,7 +56,7 @@ function Signup() {
         toast.success(otpResponse.data.message)
         setLoader(false)
         navigate("/")
-        dispatch(login(otpResponse.data))
+        dispatch(login(otpResponse.data.data))
       }
     } catch (error) {
       toast.error(error.response.data.error)
