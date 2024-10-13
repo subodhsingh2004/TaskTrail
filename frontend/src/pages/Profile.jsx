@@ -8,9 +8,14 @@ function Profile() {
 
     const emailSlicer = () => {
         let email = userInfo.email
+        let len = email.length - 14
         let start = email.substring(0,4)
-        let middle = "*****"
         let end = email.slice(10)
+        let middle = ""
+        
+        for (let i = 0; i < len; i++) {
+            middle+= "*"
+        }
 
         return start + middle + end;
     }
