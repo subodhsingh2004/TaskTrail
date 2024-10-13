@@ -6,6 +6,15 @@ import { NavLink } from 'react-router-dom';
 function Profile() {
     const userInfo = useSelector(state => state.auth.user)
 
+    const emailSlicer = () => {
+        let email = userInfo.email
+        let start = email.substring(0,4)
+        let middle = "*****"
+        let end = email.substring(-1,-10)
+
+        return start + middle + end;
+    }
+
     return (
         <>
             <div className='h-screen pt-[15vh] w-full bg-gradient1 flex items-start justify-center'>
@@ -16,7 +25,7 @@ function Profile() {
                             <AccountCircleIcon sx={{ color: "#fff", fontSize: "100px", margin: 0 }} />
                             <div className='leading-tight w-full flex flex-col items-center'>
                                 <h1 className='text-white text-center font-[poppins] font-medium text-[30px] sm:text-[36px] text-clip'>{userInfo.username}</h1>
-                                <h3 className='font-jetbrains text-gray-500'>{userInfo.email}</h3>
+                                <h3 className='font-jetbrains text-gray-500'>{emailSlicer()}</h3>
                             </div>
                         </div>
                     </div>
