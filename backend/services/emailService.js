@@ -4,11 +4,12 @@ import dotenv from "dotenv"
 dotenv.config()
 
 const transporter = nodemailer.createTransport({
-    host: "smtp.ethereal.email",
-    port: 587,
+    service: process.env.EMAIL_SERVICE,
+    port: 465,
+    secure: true,
     auth: {
         user: process.env.EMAIL,
-        pass: process.env.EMAIL_PASS
+        pass: process.env.EMAIL_KEY
     },
   });
 

@@ -30,8 +30,7 @@ const getTodo = asyncHandler(async function (req, res) {
     const user = req.user
 
     const userFromDatabase = await User.findById(user._id).populate("todos")
-
-    res.send(userFromDatabase)
+    res.send(userFromDatabase.todos)
 })
 
 const editTodo = asyncHandler(async function (req, res) {

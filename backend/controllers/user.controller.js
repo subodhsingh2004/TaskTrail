@@ -146,7 +146,6 @@ const resetPasswordNew = asyncHandler(async function (req, res) {
 
     // find user
     const user_reset = await User.findOne({ email })
-    console.log(user_reset);
     
     user_reset.password = newPassword
     await user_reset.save()

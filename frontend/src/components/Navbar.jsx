@@ -42,6 +42,7 @@ function Navbar() {
   return (
     <>
       <nav className='fixed w-full z-10 h-[8vh] bg-[#121212] flex items-center justify-between px-3 md:px-5 border-b border-b-gray-700'>
+
         <h1 className='text-[#1e2ede] font-[poppins] font-medium text-[28px]'>TaskTrail</h1>
 
         <ul className='hidden sm:flex gap-8 text-[20px] text-white font-jetbrains'>
@@ -52,16 +53,14 @@ function Navbar() {
               </li> : null
             ))
           }
-
         </ul>
 
         {
           isLogin ? <button onClick={handleLogout} className='hidden sm:block bg-[#1e2ede] text-white px-5 font-jetbrains pt-[3px] pb-[5px] rounded-full '>Logout</button> : <button onClick={() => navigate("/login")} className='hidden sm:block bg-[#1e2ede] text-white px-5 font-jetbrains pt-[3px] pb-[5px] rounded-full '>Login</button>
         }
 
-
-
         <button className='sm:hidden' onClick={handleMenuClick}><MenuIcon sx={{ color: "#f7f7ff" }} /></button>
+        
       </nav>
 
       <SideMenu active={menuPopup} onClose={handleMenuClick} />

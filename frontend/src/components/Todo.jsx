@@ -31,12 +31,11 @@ function Todo({ _id, task, isCompleted, index, onDragStart, onDragOver, onDrop, 
         try {
             const deletedTodo = await axios.delete(`/api/v1/todo/delete-todo/${_id}`)
             if (deletedTodo.data) {
-                console.log(deletedTodo);
                 toast.success(deletedTodo.data.message)
                 dispatch(deleteTodo(_id))
             }
         } catch (error) {
-            console.log(error.response)
+            toast.error(error.response)
         }
     }
 
@@ -48,20 +47,23 @@ function Todo({ _id, task, isCompleted, index, onDragStart, onDragOver, onDrop, 
         })
     }
 
-    const handleTodoUpdate = useCallback(async (isComplete) => {
-        console.log("updated")
+    const handleTodoUpdate = async (isComplete) => {
+
         const data = {
-            task: todoTitle, isCompleted: isComplete
+            task: todoTitle,
+            isCompleted: isComplete
         }
+
         try {
-            const updatedTodo = await axios.put(`/api/v1/todo/edit-todo/${_id}`, data)  
-            console.log(updatedTodo.data.data)          
-            dispatch(updateTodo(updatedTodo.data.data))
+            const updatedTodo = await axios.put(`/api/v1/todo/edit-todo/${_id}`, data)
+            if(updatedTodo.data){
+                dispatch(updateTodo(updatedTodo.data.data))
+            }
 
         } catch (error) {
-            console.log(error.response)
+            toast.error(error.response?.data.error)
         }
-    }, [completeStatus, todoTitle])
+    }
 
     return (
         <div draggable
