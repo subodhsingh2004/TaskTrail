@@ -23,9 +23,9 @@ const router = createBrowserRouter(
         <Route path='' element={<HomePage />} />
 
         <Route path='/signup' element={<AuthLayout authentication={false}>
-            {" "}
-            <Signup />
-          </AuthLayout>} />
+          {" "}
+          <Signup />
+        </AuthLayout>} />
 
         <Route path='/login' element={<AuthLayout authentication={false}>
           {" "}
@@ -36,16 +36,13 @@ const router = createBrowserRouter(
           {" "}
           <TasksPage />
         </AuthLayout>} />
-        
+
         <Route path='/profile/:id' element={<AuthLayout authentication>
           {" "}
           <Profile />
         </AuthLayout>} />
 
-        <Route path='/reset-password' element={<AuthLayout authentication={false}>
-          {" "}
-          <ResetPassword />
-        </AuthLayout>} />
+        <Route path='/reset-password' element={<ResetPassword />} />
 
       </Route>
 
