@@ -10,7 +10,7 @@ function Profile() {
         let email = userInfo.email
         let len = email.length - 14
         let start = email.substring(0,4)
-        let end = email.slice(10)
+        let end = email.slice(-1, -10)
         let middle = ""
         
         for (let i = 0; i < len; i++) {
