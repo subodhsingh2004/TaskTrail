@@ -42,7 +42,7 @@ const registerUser = asyncHandler(async function (req, res) {
     const OTP = generateOTP(email)
 
     // send this otp to user
-    await sendOTPEmail(email, OTP)
+    await sendOTPEmail(username, email, OTP)
 
     user = new User({
         username,
@@ -129,7 +129,7 @@ const resetPassword = asyncHandler(async function (req, res) {
 
 const resetPasswordOTPVerify = asyncHandler(async function (req, res) {
     const { otp } = req.body
-    const email = passwordResetUser    
+    const email = passwordResetUser
 
     if (!otp) throw new ApiError(404, "OTP not found")
 
@@ -142,11 +142,11 @@ const resetPasswordOTPVerify = asyncHandler(async function (req, res) {
 
 const resetPasswordNew = asyncHandler(async function (req, res) {
     const { newPassword } = req.body
-    const email  = passwordResetUser    
+    const email = passwordResetUser
 
     // find user
     const user_reset = await User.findOne({ email })
-    
+
     user_reset.password = newPassword
     await user_reset.save()
 
