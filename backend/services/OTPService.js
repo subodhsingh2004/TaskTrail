@@ -18,7 +18,6 @@ export const generateOTP = (email) => {
 
     setTimeout(() => {
         delete otps[email]
-        console.log("otp deleted")
     }, 60000*5);
 
     return otp;

@@ -31,7 +31,6 @@ function Signup() {
         toast.success(userResponse.data.message)
       }
     } catch (error) {
-      console.log(error.response.data.error)
       toast.error(error.response.data.error)
       setLoader(false)
     }

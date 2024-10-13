@@ -37,7 +37,7 @@ function ResetPassword() {
                 navigate("/login")
             }
         } catch (error) {
-            console.log(error.response.data)
+            toast.error(error.response.data)
         }
     }
 
@@ -76,7 +76,6 @@ function ResetPassword() {
                 setIsVerified(true)
             }
         } catch (error) {
-            console.log(error)
             toast.error(error.response.data.error)
             setLoader(false)
         }
