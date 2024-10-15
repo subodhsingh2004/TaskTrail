@@ -40,7 +40,7 @@ function SideMenu({ active, onClose }) {
     return (
         <>
             <div className={`fixed z-20 transition-transform duration-500 ${active ? 'transform translate-x-0' : 'transform translate-x-full'} right-0 top-0 h-screen w-[100vw] bg-[#121212]`}>
-                <div className='flex flex-col px-3 pt-3 pb-5 justify-between h-full'>
+                <div className='flex flex-col px-3 pt-3 pb-20 justify-between h-full'>
                     <div className='flex flex-col'>
                         <div className='w-full flex justify-between leading-none'>
                             <h1 className='text-[#1e2ede] font-[poppins] font-medium text-[28px]'>TaskTrail</h1>
