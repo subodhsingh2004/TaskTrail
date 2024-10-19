@@ -51,7 +51,9 @@ function TasksPage() {
 
     try {
       const createdTodo = await axios.post("/api/v1/todo/create-todo", { task: todoInput })
-      dispatch(addTodo({_id: 1, task: todoInput}))
+      if(createdTodo.data){
+        dispatch(addTodo(createdTodo.data.data))
+      }
 
     } catch (error) {
       toast.error(error.response.data.error)
@@ -63,7 +65,7 @@ function TasksPage() {
   const getTodoFromDatabase = async () => {
     try {
       const response = await axios.get("/api/v1/todo/get-todos")
-      if(response.data) dispatch(setTodos(response.data))
+      if (response.data) dispatch(setTodos(response.data))
       // sessionStorage.setItem("todo", JSON.stringify(data.todos))
     } catch (error) {
       toast.error(error?.response.data.error)
@@ -97,37 +99,37 @@ function TasksPage() {
   }
   return (
 
-      <div className='w-full pt-[10vh] min-h-screen px-3 pb-5 bg-gradient1 space-y-5 flex-col lg:flex-row flex md:space-x-2 justify-evenly items-center'>
+    <div className='w-full pt-[10vh] min-h-screen px-3 pb-5 bg-gradient1 space-y-5 flex-col lg:flex-row flex md:space-x-2 justify-evenly items-center'>
 
-        <div className='flex w-full lg:justify-between sm:w-1/2 lg:w-[80%] space-y-5 flex-col lg:flex-row lg:gap-10'>
+      <div className='flex w-full lg:justify-between sm:w-1/2 lg:w-[80%] space-y-5 flex-col lg:flex-row lg:gap-10'>
 
-          <div className='flex w-full lg:w-[35%] flex-col items-center rounded-[30px]'>
+        <div className='flex w-full lg:w-[35%] flex-col items-center rounded-[30px]'>
 
-            <h1 className='w-full text-left text-white font-jetbrains text-[26px] tracking-tighter'>Schedule Your Day</h1>
+          <h1 className='w-full text-left text-white font-jetbrains text-[26px] tracking-tighter'>Schedule Your Day</h1>
 
-            <div className='w-full mt-1'>
-              <form onSubmit={handleTodoSubmit} className='flex space-x-2'>
-                <input type="text" value={todoInput} onChange={handleTodoInput} placeholder='Add Tasks' className='w-full bg-transparent border px-2 border-gray-600 focus:outline-none font-[montserrat] text-[20px] text-white rounded-md py-1' />
-                <button type='submit' className='bg-[#1e2ede] font-jetbrains text-white px-4 py-1 text-[20px] rounded-md'>Add</button>
-              </form>
-            </div>
-
-            <div className='mt-5 border border-gray-600 p-3 min-h-[350px] sm:max-h-[400px] overflow-y-scroll hide-scrollbar space-y-3 rounded-xl w-full'>
-              {
-                allTodos.length ? allTodos.map((todo, index) => (
-                  <Todo
-                    key={todo._id}
-                    _id={todo._id}
-                    task={todo.task}
-                    isCompleted={todo.isCompleted}
-                    index={index}
-                    onDragStart={handleDragStart}
-                    onDragOver={handleDragOver}
-                    onDrop={handleDrop} />
-                )) : <h1 className='text-white'>No Tasks</h1>
-              }
-            </div>
+          <div className='w-full mt-1'>
+            <form onSubmit={handleTodoSubmit} className='flex space-x-2'>
+              <input type="text" value={todoInput} onChange={handleTodoInput} placeholder='Add Tasks' className='w-full bg-transparent border px-2 border-gray-600 focus:outline-none font-[montserrat] text-[20px] text-white rounded-md py-1' />
+              <button type='submit' className='bg-[#1e2ede] font-jetbrains text-white px-4 py-1 text-[20px] rounded-md'>Add</button>
+            </form>
           </div>
+
+          <div className='mt-5 border border-gray-600 p-3 min-h-[350px] sm:max-h-[400px] overflow-y-scroll hide-scrollbar space-y-3 rounded-xl w-full'>
+            {
+              allTodos.length ? allTodos.map((todo, index) => (
+                <Todo
+                  key={todo._id}
+                  _id={todo._id}
+                  task={todo.task}
+                  isCompleted={todo.isCompleted}
+                  index={index}
+                  onDragStart={handleDragStart}
+                  onDragOver={handleDragOver}
+                  onDrop={handleDrop} />
+              )) : <h1 className='text-white'>No Tasks</h1>
+            }
+          </div>
+        </div>
 
         {/* Progress Section */}
         <div className='h-[200px] lg:w-[45%] mb-5 w-full bg-[#212121] rounded-xl p-3'>
