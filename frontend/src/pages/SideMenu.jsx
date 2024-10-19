@@ -4,6 +4,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useSelector } from "react-redux"
 import axios from 'axios';
 import { logout } from '../slices/AuthSlice';
+import toast from 'react-hot-toast';
 
 function SideMenu({ active, onClose }) {
     const navigate = useNavigate()
