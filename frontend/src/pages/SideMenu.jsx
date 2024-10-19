@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import CloseIcon from '@mui/icons-material/Close';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import axios from 'axios';
 import { logout } from '../slices/AuthSlice';
 import toast from 'react-hot-toast';
 
 function SideMenu({ active, onClose }) {
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const isLogin = useSelector(state => state.auth.status)
     const user = useSelector(state => state.auth.user)
     const [popup, setPopup] = useState(false)
