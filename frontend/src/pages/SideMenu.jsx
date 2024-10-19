@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import CloseIcon from '@mui/icons-material/Close';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useSelector } from "react-redux"
+import axios from 'axios';
 
 function SideMenu({ active, onClose }) {
     const navigate = useNavigate()
