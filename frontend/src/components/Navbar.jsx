@@ -4,6 +4,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SideMenu from '../pages/SideMenu';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../slices/AuthSlice';
+import axios from 'axios';
+import { toast } from "react-hot-toast"
 
 function Navbar() {
   const navigate = useNavigate()
@@ -17,8 +19,18 @@ function Navbar() {
     setMenuPopup(prev => !prev)
   }
 
-  const handleLogout = () => {
-    dispatch(logout())
+  const handleLogout = async () => {
+    try {
+      const response = await axios.post("/api/v1/users/logout")
+
+      if (response.data) {
+        navigate("/")
+        dispatch(logout())
+        toast.success(response.data.message)
+      }
+    } catch (error) {
+      toast.error(error.response.data.error)
+    }
   }
 
   const navItems = [
@@ -60,7 +72,7 @@ function Navbar() {
         }
 
         <button className='sm:hidden' onClick={handleMenuClick}><MenuIcon sx={{ color: "#f7f7ff" }} /></button>
-        
+
       </nav>
 
       <SideMenu active={menuPopup} onClose={handleMenuClick} />
