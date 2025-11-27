@@ -9,7 +9,7 @@ export const generateOTP = (email) => {
         otp += digits[Math.floor(Math.random() * 10)];
     }
 
-    const validTime = Date.now() + 60000*5
+    const validTime = Date.now() + 60000*10
 
     otps[email] = {
         otp,
@@ -18,7 +18,7 @@ export const generateOTP = (email) => {
 
     setTimeout(() => {
         delete otps[email]
-    }, 60000*5);
+    }, 60000*10);
 
     return otp;
 }
